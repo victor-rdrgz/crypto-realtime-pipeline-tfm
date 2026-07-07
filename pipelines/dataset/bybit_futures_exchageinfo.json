@@ -1,0 +1,19 @@
+{
+    "name": "bybit_futures_exchageinfo",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "bybit_api",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "HttpServerLocation",
+                "relativeUrl": "instruments-info?category=linear"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

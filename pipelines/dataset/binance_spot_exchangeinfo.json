@@ -1,0 +1,19 @@
+{
+    "name": "binance_spot_exchangeinfo",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "binance_api",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "HttpServerLocation",
+                "relativeUrl": "exchangeInfo"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,24 @@
+{
+    "name": "adls2_exchange_binance",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "adls2_datalake",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "@concat('binance_', formatDateTime(utcNow(), 'yyyy-MM-ddTHHmmss'), '.json')",
+                    "type": "Expression"
+                },
+                "folderPath": "raw/exchangeinfo/binance",
+                "fileSystem": "datalake"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

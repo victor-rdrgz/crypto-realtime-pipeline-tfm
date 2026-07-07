@@ -1,0 +1,11 @@
+{
+    "name": "adls2_datalake",
+    "type": "Microsoft.DataFactory/factories/linkedservices",
+    "properties": {
+        "annotations": [],
+        "type": "AzureBlobFS",
+        "typeProperties": {
+            "url": "https://statfmprod.dfs.core.windows.net/"
+        }
+    }
+}

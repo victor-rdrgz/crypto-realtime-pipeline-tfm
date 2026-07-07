@@ -1,0 +1,19 @@
+{
+    "name": "okx_spot_exchangeinfo",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "okx_api",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "HttpServerLocation",
+                "relativeUrl": "instruments?instType=SPOT"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

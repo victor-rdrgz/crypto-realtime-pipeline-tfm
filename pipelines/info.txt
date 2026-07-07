@@ -1,0 +1,6 @@
+selected resource name:		exchangeinfo_pipeline_futures_and_spot
+selected resource type:		pipeline
+factory name:			dftfmprod
+factory location:		centralindia
+subscription id:		b9c75d1a-b9c6-4b39-9a81-2d73d5a3cd22
+time of download (UTC):		Tue, 30 Sep 2025 19:52:02 GMT

@@ -1,0 +1,214 @@
+{
+    "name": "adls2_exchange_okx_futures",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "adls2_datalake",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "@concat('okx_futures_', formatDateTime(utcNow(), 'yyyy-MM-ddTHHmmss'), '.json')",
+                    "type": "Expression"
+                },
+                "folderPath": "raw/exchangeinfo/okx_futures",
+                "fileSystem": "datalake"
+            }
+        },
+        "schema": {
+            "type": "object",
+            "properties": {
+                "commitInfo": {
+                    "type": "object",
+                    "properties": {
+                        "timestamp": {
+                            "type": "integer"
+                        },
+                        "userId": {
+                            "type": "string"
+                        },
+                        "userName": {
+                            "type": "string"
+                        },
+                        "operation": {
+                            "type": "string"
+                        },
+                        "operationParameters": {
+                            "type": "object",
+                            "properties": {
+                                "mode": {
+                                    "type": "string"
+                                },
+                                "statsOnLoad": {
+                                    "type": "boolean"
+                                },
+                                "partitionBy": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "notebook": {
+                            "type": "object",
+                            "properties": {
+                                "notebookId": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "clusterId": {
+                            "type": "string"
+                        },
+                        "isolationLevel": {
+                            "type": "string"
+                        },
+                        "isBlindAppend": {
+                            "type": "boolean"
+                        },
+                        "operationMetrics": {
+                            "type": "object",
+                            "properties": {
+                                "numFiles": {
+                                    "type": "string"
+                                },
+                                "numOutputRows": {
+                                    "type": "string"
+                                },
+                                "numOutputBytes": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "tags": {
+                            "type": "object",
+                            "properties": {
+                                "noRowsCopied": {
+                                    "type": "string"
+                                },
+                                "restoresDeletedRows": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "engineInfo": {
+                            "type": "string"
+                        },
+                        "txnId": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "metaData": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "format": {
+                            "type": "object",
+                            "properties": {
+                                "provider": {
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "schemaString": {
+                            "type": "string"
+                        },
+                        "partitionColumns": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "configuration": {
+                            "type": "object",
+                            "properties": {
+                                "delta.enableDeletionVectors": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "createdTime": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "object",
+                    "properties": {
+                        "minReaderVersion": {
+                            "type": "integer"
+                        },
+                        "minWriterVersion": {
+                            "type": "integer"
+                        },
+                        "readerFeatures": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "writerFeatures": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "add": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "partitionValues": {
+                            "type": "object",
+                            "properties": {
+                                "_ingested_filename": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "size": {
+                            "type": "integer"
+                        },
+                        "modificationTime": {
+                            "type": "integer"
+                        },
+                        "dataChange": {
+                            "type": "boolean"
+                        },
+                        "stats": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "type": "object",
+                            "properties": {
+                                "INSERTION_TIME": {
+                                    "type": "string"
+                                },
+                                "MIN_INSERTION_TIME": {
+                                    "type": "string"
+                                },
+                                "MAX_INSERTION_TIME": {
+                                    "type": "string"
+                                },
+                                "OPTIMIZE_TARGET_SIZE": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

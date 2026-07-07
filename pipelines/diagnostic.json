@@ -1,0 +1,23 @@
+{
+    "now": "2025-09-30T19:52:02.440Z",
+    "perfNow": 6470309.699999999,
+    "diagnosticCorrelation": "8b9bb874-f8fd-4ee5-8387-ef3c9c4653c9",
+    "source": "DownloadSupportFiles",
+    "environment": {
+        "productName": "adf",
+        "buildVersion": "1.0.093025.4",
+        "environmentType": 3,
+        "resourceName": "dftfmprod",
+        "resourceRegion": "centralindia",
+        "resourceGroup": "tfmprod",
+        "subscriptionId": "b9c75d1a-b9c6-4b39-9a81-2d73d5a3cd22",
+        "sessionId": "g3fn9fBFvJx8GJl6zzRz7f",
+        "operationId": "",
+        "gitType": "live",
+        "loggingKey": "6ce01a58-9e4c-4c37-a73f-73bc9d27120c"
+    },
+    "additionalInfo": {
+        "selectedResource": "exchangeinfo_pipeline_futures_and_spot",
+        "selectedResourceType": "pipeline"
+    }
+}

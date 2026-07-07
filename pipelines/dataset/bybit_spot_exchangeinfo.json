@@ -1,0 +1,19 @@
+{
+    "name": "bybit_spot_exchangeinfo",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "bybit_api",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "HttpServerLocation",
+                "relativeUrl": "instruments-info?category=spot"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

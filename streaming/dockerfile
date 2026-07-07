@@ -1,0 +1,21 @@
+FROM python:3.12-slim
+
+# Instala dependencias del sistema (opcional, pero pandas/MLflow suelen necesitarlas)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crea directorio de trabajo
+WORKDIR /app
+
+# Copia requirements e instálalos
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia el script y el .env
+COPY script.py .
+COPY .env .
+
+# Comando de arranque
+CMD ["python", "script.py"]

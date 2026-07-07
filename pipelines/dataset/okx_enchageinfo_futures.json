@@ -1,0 +1,19 @@
+{
+    "name": "okx_enchageinfo_futures",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "okx_api",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "HttpServerLocation",
+                "relativeUrl": "instruments?instType=SWAP"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}
