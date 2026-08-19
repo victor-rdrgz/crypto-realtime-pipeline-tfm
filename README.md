@@ -3,6 +3,8 @@
     <img src="https://img.youtube.com/vi/2-JEcO-fkCI/hqdefault.jpg" alt="Ver video en YouTube" width="600">
   </a>
 </p>
+</br></br></br></br>
+
 
 # Arquitectura de Análisis y Trading Predictivo en Mercados de Futuros de Criptomonedas
 
