@@ -1,4 +1,9 @@
-[![Ver video en YouTube](https://img.youtube.com/vi/2-JEcO-fkCI/maxresdefault.jpg)](https://www.youtube.com/watch?v=2-JEcO-fkCI)
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=2-JEcO-fkCI">
+    <img src="https://img.youtube.com/vi/2-JEcO-fkCI/hqdefault.jpg" alt="Ver video en YouTube" width="600">
+  </a>
+</p>
+
 # Arquitectura de Análisis y Trading Predictivo en Mercados de Futuros de Criptomonedas
 
 Master's thesis (Big Data & Data Engineering, UCM): an end-to-end real-time data pipeline on Microsoft Azure that analyzes price variability in crypto futures markets, detects "whale trades" (large-volume operations) and predicts short-term price increases.
