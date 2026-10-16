@@ -1,77 +1,77 @@
 <p align="center">
   <a href="https://www.youtube.com/watch?v=2-JEcO-fkCI">
-    <img src="https://img.youtube.com/vi/2-JEcO-fkCI/hqdefault.jpg" alt="Ver video en YouTube" width="600">
+    <img src="https://img.youtube.com/vi/2-JEcO-fkCI/hqdefault.jpg" alt="Watch the demo on YouTube" width="600">
   </a>
 </p>
 </br></br></br></br>
 
 
-# Arquitectura de Análisis y Trading Predictivo en Mercados de Futuros de Criptomonedas
+# Predictive Analytics and Trading Architecture for Crypto Futures Markets
 
-Master's thesis (Big Data & Data Engineering, UCM): an end-to-end real-time data pipeline on Microsoft Azure that analyzes price variability in crypto futures markets, detects "whale trades" (large-volume operations) and predicts short-term price increases.
+Master's thesis (Big Data & Data Engineering, UCM) — awarded 2nd Best Master's Thesis: an end-to-end real-time data pipeline on Microsoft Azure that analyzes price variability in crypto futures markets, detects "whale trades" (large-volume operations) and predicts short-term price increases.
 
-## Resumen
+## Summary
 
-- Procesa y transforma la información en **Azure Databricks** desde **Binance API, OKX API y Bybit API**.
-- Aplica arquitectura **Medallion (raw, bronze, silver, gold)** para almacenamiento en **Azure Data Lake Storage Gen2**.
-- Entrena y registra modelos en **MLflow**, integrados con **Unity Catalog**.
-- Despliega un prototipo en **Azure Container Instances (ACI)** que consume el WebSocket de Binance y realiza predicciones en tiempo real.
+- Processes and transforms data in **Azure Databricks** from the **Binance, OKX and Bybit APIs**.
+- Applies a **Medallion architecture (raw, bronze, silver, gold)** for storage in **Azure Data Lake Storage Gen2**.
+- Trains and registers models in **MLflow**, integrated with **Unity Catalog**.
+- Deploys a prototype on **Azure Container Instances (ACI)** that consumes the Binance WebSocket and makes real-time predictions.
 
-## Arquitectura
+## Architecture
 
-![Diagrama General](docs/imagenes/arquitectura.jpg)
+![Architecture diagram](docs/imagenes/arquitectura.jpg)
 
-**Componentes principales:**
-- **Fuentes de datos**: Binance (REST/WebSocket), Bybit y OKX.
-- **Almacenamiento**: ADLS Gen2 con arquitectura Medallion (raw → bronze → silver → gold).
-- **Ingesta/Orquestación**: Azure Data Factory + Azure Databricks.
-- **Procesamiento**: Azure Databricks.
-- **Gobierno**: Unity Catalog para trazabilidad y control de accesos.
-- **Despliegue**: Docker + Azure Container Instances (ACI).
-- **Modelado**: MLflow para experimentos, métricas y registro de modelos.
+**Main components:**
+- **Data sources**: Binance (REST/WebSocket), Bybit and OKX.
+- **Storage**: ADLS Gen2 with a Medallion architecture (raw → bronze → silver → gold).
+- **Ingestion/Orchestration**: Azure Data Factory + Azure Databricks.
+- **Processing**: Azure Databricks.
+- **Governance**: Unity Catalog for lineage and access control.
+- **Deployment**: Docker + Azure Container Instances (ACI).
+- **Modeling**: MLflow for experiments, metrics and model registry.
 
-![Modelo registrado en Unity Catalog](docs/imagenes/mlflow.jpeg)
+![Model registered in Unity Catalog](docs/imagenes/mlflow.jpeg)
 
-## Resultados clave
+## Key results
 
-- **Reducción de latencia:** 59% desplegando en región Japan East.
-- **Coste de producción optimizado:** 0,89 €/día en ACI.
-- **Tiempo medio de predicción**: 6 ms.
-- **Retorno medio por señal**: +0,81%.
-- **Mediana de retorno (p50)**: +0,93%.
-- **Operaciones ganadoras (>0)**: 73,2%.
-- **Señales ≥ 1%**: 49,48%.
+- **Latency reduction:** 59% by deploying in the Japan East region.
+- **Optimized production cost:** €0.89/day on ACI.
+- **Average prediction time**: 6 ms.
+- **Average return per signal**: +0.81%.
+- **Median return (p50)**: +0.93%.
+- **Winning trades (>0)**: 73.2%.
+- **Signals ≥ 1%**: 49.48%.
 
-## Estructura del repositorio
+## Repository structure
 
 ```
-docs/           Memoria completa (PDF), diagramas y capturas
+docs/           Full thesis report (PDF, in Spanish), diagrams and screenshots
 notebooks/
-  etl-train/     Pipeline de ingesta, features, labels y entrenamiento (Databricks)
-  exchangeinfo/  Ingesta de metadatos de mercado (raw → bronze → silver → gold)
-  experiments/   Notebooks de experimentación: distintos modelos (boosting, light, linear tree) e inferencia en near-real-time
-streaming/      Cliente WebSocket de Binance + Dockerfile para el despliegue en ACI
-pipelines/      Definiciones de Azure Data Factory (pipeline, datasets, linked services)
-aux/            Script de exportación de métricas de Binance
+  etl-train/     Ingestion, features, labels and training pipeline (Databricks)
+  exchangeinfo/  Market metadata ingestion (raw → bronze → silver → gold)
+  experiments/   Experimentation notebooks: different models (boosting, light, linear tree) and near-real-time inference
+streaming/      Binance WebSocket client + Dockerfile for deployment on ACI
+pipelines/      Azure Data Factory definitions (pipeline, datasets, linked services)
+aux/            Binance metrics export script
 ```
 
-**Nota:** se han excluido del repositorio los vídeos de demostración, los datasets/dumps crudos de exchange y cualquier fichero con tokens o credenciales (`.env`, claves de Databricks/Azure/Confluent). El vídeo de demostración está enlazado en la memoria.
+**Note:** demo videos, raw exchange datasets/dumps and any files containing tokens or credentials (`.env`, Databricks/Azure/Confluent keys) have been excluded from the repository. The demo video is linked in the thesis report.
 
-## Cómo ejecutar
+## How to run
 
-1. **Ingesta y entrenamiento**: ejecutar el pipeline de Data Factory (`pipelines/pipeline/exchangeinfo_pipeline_futures_and_spot.json`) y los notebooks de `notebooks/etl-train/` en Databricks.
-2. **Despliegue en tiempo real**: configurar las variables de entorno (host y token de Databricks, símbolo a seguir) y desplegar `streaming/` como contenedor en Azure Container Instances.
+1. **Ingestion and training**: run the Data Factory pipeline (`pipelines/pipeline/exchangeinfo_pipeline_futures_and_spot.json`) and the notebooks in `notebooks/etl-train/` on Databricks.
+2. **Real-time deployment**: set the environment variables (Databricks host and token, symbol to track) and deploy `streaming/` as a container on Azure Container Instances.
 
 ## Stack
 
 Azure Databricks, Azure Data Factory, ADLS Gen2, Unity Catalog, MLflow, Docker, Azure Container Instances, Python, PySpark.
 
-## Futuras mejoras
+## Future improvements
 
-- Integrar el despliegue en ACI en el pipeline de Azure Data Factory.
-- Generar paquete `.whl` para reutilizar el pipeline.
-- Implementar borrado/archivado automático de datos antiguos.
-- Desarrollar paneles en Power BI o notebooks para reporting avanzado.
+- Integrate the ACI deployment into the Azure Data Factory pipeline.
+- Build a `.whl` package to reuse the pipeline.
+- Implement automatic deletion/archiving of old data.
+- Build Power BI dashboards or notebooks for advanced reporting.
 
 ---
-Máster en Big Data & Data Engineering (UCM) — **Autor:** Víctor Daniel Rodríguez Pérez
+Master's in Big Data & Data Engineering (UCM) — **Author:** Víctor Daniel Rodríguez Pérez
