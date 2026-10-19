@@ -3,7 +3,6 @@
     <img src="https://img.youtube.com/vi/2-JEcO-fkCI/hqdefault.jpg" alt="Watch the demo on YouTube" width="600">
   </a>
 </p>
-</br></br></br></br>
 
 
 # Predictive Analytics and Trading Architecture for Crypto Futures Markets
