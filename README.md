@@ -51,7 +51,7 @@ notebooks/
   experiments/   Experimentation notebooks: different models (boosting, light, linear tree) and near-real-time inference
 streaming/      Binance WebSocket client + Dockerfile for deployment on ACI
 pipelines/      Azure Data Factory definitions (pipeline, datasets, linked services)
-aux/            Binance metrics export script
+scripts/        Binance metrics export script
 ```
 
 **Note:** demo videos, raw exchange datasets/dumps and any files containing tokens or credentials (`.env`, Databricks/Azure/Confluent keys) have been excluded from the repository. The demo video is linked in the thesis report.
