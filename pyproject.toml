@@ -5,7 +5,9 @@ description = "Data pipelines for crypto futures market data on Databricks"
 readme = "README.md"
 authors = [{ name = "Víctor Rodríguez" }]
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = [
+    "requests>=2.34.2",
+]
 
 [dependency-groups]
 dev = [
