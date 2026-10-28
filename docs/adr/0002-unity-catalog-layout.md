@@ -9,7 +9,7 @@ Today every table is an external Delta table registered in a single catalog and 
 
 [ADR-0001](0001-migrate-to-declarative-automation-bundles.md) moves the project to one bundle per domain (`exchangeinfo`, `whale_trades`), each with `dev`, `staging` and `prod` targets. This needs a storage layout that isolates environments and developers, and in which every schema and volume belongs to exactly one bundle: a schema declared in two bundles would be created, changed and destroyed by both deployments.
 
-The platform is a single Databricks workspace on AWS whose Unity Catalog metastore uses Databricks-managed default storage: there is no customer-owned cloud storage or external location for it, and every environment shares the one workspace. Workspace admins can create catalogs.
+The platform is Databricks Free Edition: a single workspace on AWS, with no account console or account APIs ([Free Edition limitations](https://docs.databricks.com/aws/en/getting-started/free-edition-limitations)), whose Unity Catalog metastore uses Databricks-managed default storage. There is no customer-owned cloud storage or external location, and every environment shares the one workspace. Workspace admins can create catalogs, but account groups cannot be created, and the system-generated workspace admins group cannot own Unity Catalog objects.
 
 Databricks guidance relevant to this decision:
 
@@ -22,7 +22,7 @@ Databricks guidance relevant to this decision:
 
 ## Decision
 
-1. **One catalog per environment**, `dev`, `staging` and `prod`, named by the `catalog` bundle variable of each target and created by an administrator. With a single workspace, the production catalog cannot be bound in `ISOLATED` mode to a separate production workspace. Until one exists, production data is protected by grants: only the production run-as service principals hold `MODIFY` on `prod`, and people get at most `BROWSE` and `SELECT`. When a production workspace is added, `prod` is bound in `ISOLATED` mode to it.
+1. **One catalog per environment**, `dev`, `staging` and `prod`, named by the `catalog` bundle variable of each target and created by an administrator. With a single workspace, the production catalog cannot be bound in `ISOLATED` mode to a separate production workspace. Until one exists, production data is protected by grants: only the production run-as service principals hold `MODIFY` on `prod`, and people get at most `BROWSE` and `SELECT`. When a production workspace is added, `prod` is bound in `ISOLATED` mode to it. Databricks recommends groups as owners of production catalogs and schemas ([Unity Catalog best practices](https://docs.databricks.com/aws/en/data-governance/unity-catalog/best-practices)); without account groups, the catalogs are owned by the administrator until a group can take them over.
 2. **One schema per domain and layer** inside each catalog, named `<domain>_<layer>`:
    - `exchangeinfo`: `exchangeinfo_landing`, `exchangeinfo_bronze`, `exchangeinfo_silver`, `exchangeinfo_gold`.
    - `whale_trades`: `whale_trades_landing`, `whale_trades_bronze`, `whale_trades_silver`, `whale_trades_gold`, `whale_trades_ml` (registered models).
