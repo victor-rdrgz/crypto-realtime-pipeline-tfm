@@ -1,0 +1,54 @@
+name: New data source
+description: Ingest a new dataset into the lakehouse.
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Each dataset gets a data contract (ODCS) in `docs/data-contracts/`. The answers below are its starting point.
+  - type: input
+    id: dataset
+    attributes:
+      label: Dataset name
+      placeholder: binance_futures_exchangeinfo
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: API or system, endpoint, authentication method, pagination and rate limits. Never include credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: The business question or downstream use this dataset serves.
+    validations:
+      required: true
+  - type: textarea
+    id: sla
+    attributes:
+      label: Service level
+      description: Expected frequency, latency, time of availability and retention.
+    validations:
+      required: true
+  - type: textarea
+    id: quality
+    attributes:
+      label: Schema and quality rules
+      description: Business key, mandatory fields and the rules a valid record must meet.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] Data contract merged
+        - [ ] Landing, bronze and silver tables populated in dev
+        - [ ] Freshness alert configured
+    validations:
+      required: true
