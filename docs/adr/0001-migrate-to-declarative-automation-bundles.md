@@ -43,7 +43,7 @@ Replace Azure Data Factory and the workspace-defined jobs with Declarative Autom
 Out of scope, each to be covered by its own ADR:
 
 - The deployment platform of the real-time inference client in `streaming/` (a WebSocket consumer on Azure Container Instances). Its code moves into the package so that it shares the feature definitions used in training, but where it runs is a separate decision.
-- The storage layout in Unity Catalog (catalogs, schemas, volumes and tables per environment), including which bundle owns each schema.
+- The storage layout in Unity Catalog (catalogs, schemas, volumes and tables per environment), including which bundle owns each schema, decided in [ADR-0002](0002-unity-catalog-layout.md).
 - The experimentation notebooks in `notebooks/experiments/`, which are not deployed.
 
 ## Consequences
