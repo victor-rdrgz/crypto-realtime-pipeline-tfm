@@ -1,0 +1,44 @@
+[project]
+name = "crypto-realtime-pipeline"
+version = "0.1.0"
+description = "Data pipelines for crypto futures market data on Databricks"
+readme = "README.md"
+authors = [{ name = "Víctor Rodríguez" }]
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# Legacy code, excluded until it is migrated into src/ (ADR-0001).
+extend-exclude = ["notebooks", "scripts", "streaming"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM", "S", "PT", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "--strict-markers",
+    "--import-mode=importlib",
+    "-m", "not integration",
+    "--cov=crypto_realtime_pipeline",
+    "--cov-report=term-missing",
+    "--cov-fail-under=80",
+]
+markers = ["integration: end-to-end tests that run against a deployed Databricks target"]

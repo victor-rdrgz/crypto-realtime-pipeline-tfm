@@ -10,6 +10,25 @@ Thank you for your interest in this project. This guide describes how changes ar
 - Trivial changes (a typo, a broken link, an obvious one-line fix) can go straight to a pull request without an issue.
 - Design decisions are recorded as Architecture Decision Records (ADRs) in [`docs/adr/`](docs/adr) and reviewed in a pull request before they are implemented. An accepted ADR is never rewritten; it is superseded by a new one.
 
+## Development setup
+
+Requirements: [uv](https://docs.astral.sh/uv/) and Git.
+
+```sh
+uv sync                        # create the virtual environment with the locked dependencies
+uv run pre-commit install      # run ruff and the secret scan on every commit
+```
+
+Checks to run before pushing (CI runs the same ones):
+
+```sh
+uv run ruff check .
+uv run ruff format --check .
+uv run pytest
+```
+
+New code lives in the `crypto_realtime_pipeline` package under `src/`, with unit tests under `tests/unit/`. The legacy folders (`notebooks/`, `pipelines/`, `scripts/`, `streaming/`) are excluded from linting until they are migrated ([ADR-0001](docs/adr/0001-migrate-to-declarative-automation-bundles.md)).
+
 ## Branches and commits
 
 This project follows [GitHub flow](https://docs.github.com/en/get-started/using-github/github-flow).

@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c  # frozen: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+        exclude: &legacy ^(docs/(diagramas_imagenes|imagenes)|notebooks|pipelines|scripts|streaming)/
+      - id: trailing-whitespace
+        exclude: *legacy
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 25bcf95026b96e2dd3c0aec3090c3d6ef6ca2e6c  # frozen: v0.17.3
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: 83d9cd684c87d95d656c1458ef04895a7f1cbd8e  # frozen: v8.30.1
+    hooks:
+      - id: gitleaks
