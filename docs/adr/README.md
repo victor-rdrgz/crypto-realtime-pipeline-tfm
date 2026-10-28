@@ -32,3 +32,4 @@ This folder records the significant design decisions of the project as Architect
 | ADR | Title | Status |
 | --- | --- | --- |
 | [0001](0001-migrate-to-declarative-automation-bundles.md) | Migrate from Azure Data Factory and notebooks to Declarative Automation Bundles with a Python package | Proposed |
+| [0002](0002-unity-catalog-layout.md) | Unity Catalog layout per environment | Proposed |
