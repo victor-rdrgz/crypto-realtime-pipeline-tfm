@@ -38,7 +38,7 @@ Replace Azure Data Factory and the workspace-defined jobs with Declarative Autom
    Each bundle lives in its own folder under `bundles/` and its tasks reference the exact wheel version built by CI. Code shared by the domains stays in the package, so no bundle copies another bundle's source.
 3. **Orchestration in Lakeflow Jobs, transformations in Lakeflow pipelines.** The ADF Copy activities become ingestion tasks in the package that call the exchange APIs and write to the landing area; the medallion layers become Lakeflow pipelines whose datasets call transformation functions from the package; task order, schedules and retries are defined in each bundle. Azure Data Factory is decommissioned once each domain runs from its bundle in production.
 4. **Dependencies between bundles in CI/CD.** `whale_trades` consumes the tables published by `exchangeinfo`. CD deploys and validates `exchangeinfo` first and deploys `whale_trades` only after that succeeds; the names of the upstream tables are passed to `whale_trades` as bundle variables, and its jobs fail fast when an upstream table is missing ([Developer best practices](https://docs.databricks.com/aws/en/developers/best-practices)).
-5. **CI/CD in GitHub Actions.** Pull requests run lint, unit tests and `databricks bundle validate` for every bundle and target; merges to `main` deploy to `staging`; releases deploy the same versioned wheel to `prod`. CI/CD authenticates with workload identity federation, which Databricks recommends for CI/CD ([CI/CD workflows on Databricks](https://docs.databricks.com/aws/en/dev-tools/ci-cd/flows)).
+5. **CI/CD in GitHub Actions.** Pull requests run lint, unit tests and `databricks bundle validate` for every bundle and target; merges to `main` deploy to `staging`; releases deploy the same versioned wheel to `prod`. CI/CD authenticates as the deployment service principal. Databricks recommends workload identity federation for CI/CD ([CI/CD workflows on Databricks](https://docs.databricks.com/aws/en/dev-tools/ci-cd/flows)), but federation policies are configured at the account level ([Configure a federation policy](https://docs.databricks.com/aws/en/dev-tools/auth/oauth-federation-policy)) and the current platform, Databricks Free Edition, has no account console or account APIs ([Free Edition limitations](https://docs.databricks.com/aws/en/getting-started/free-edition-limitations)). Until it has, CI/CD uses OAuth machine-to-machine authentication with a secret of the deployment service principal, stored as a GitHub environment secret and rotated before it expires.
 
 Out of scope, each to be covered by its own ADR:
 
@@ -61,6 +61,7 @@ Negative:
 - The migration is a sizeable effort: every notebook must be refactored into modules with tests, and both domains must be re-verified end to end.
 - API ingestion previously handled by ADF Copy activities (retries, pagination) must be implemented and tested in the package.
 - CI/CD must validate and deploy several bundles in dependency order, and the shared wheel version must be the same for every bundle of a release.
+- Until workload identity federation is available, CI/CD depends on a long-lived service principal secret that must be rotated.
 - During the migration both orchestrators coexist for the domains not yet migrated.
 - Contributors need the Databricks CLI and `uv` locally.
 
