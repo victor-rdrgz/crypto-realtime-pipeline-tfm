@@ -1,0 +1,36 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+.databrickscfg
+
+# AI assistant files
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+AGENTS.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Tooling caches and reports
+.ruff_cache/
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Databricks bundles
+.databricks/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

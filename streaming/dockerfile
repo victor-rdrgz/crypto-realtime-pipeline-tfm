@@ -13,9 +13,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia el script y el .env
 COPY script.py .
-COPY .env .
 
 # Comando de arranque
 CMD ["python", "script.py"]

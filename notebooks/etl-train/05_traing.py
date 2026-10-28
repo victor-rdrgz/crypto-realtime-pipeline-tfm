@@ -632,7 +632,9 @@ from azure.mgmt.containerinstance import ContainerInstanceManagementClient
 from azure.core.credentials import AccessToken
 
 # --- Configuración ---
-SUBSCRIPTION_ID = "b9c75d1a-b9c6-4b39-9a81-2d73d5a3cd22"   # tu sub ID
+SUBSCRIPTION_ID = os.environ.get("AZURE_SUBSCRIPTION_ID")
+if not SUBSCRIPTION_ID:
+    raise ValueError("AZURE_SUBSCRIPTION_ID is not set in the cluster environment")
 RESOURCE_GROUP  = "tfmprod-jpn"                            # RG donde está el ACI
 ACI_NAME        = "predictor-ws"                           # nombre del container group
 
