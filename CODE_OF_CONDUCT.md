@@ -8,4 +8,4 @@ The code of conduct applies in all project spaces, and when an individual is off
 
 ## Reporting
 
-Report unacceptable behavior to the project maintainer at TODO-CONTACT-EMAIL. All reports are reviewed promptly and handled confidentially. The maintainer enforces the code of conduct following the enforcement guidelines of the Contributor Covenant.
+Report unacceptable behavior to the project maintainer at victor.rdrgz.prz@gmail.com. All reports are reviewed promptly and handled confidentially. The maintainer enforces the code of conduct following the enforcement guidelines of the Contributor Covenant.
